@@ -105,7 +105,12 @@ if __name__ == '__main__':
     val = val.prefetch(tf.data.AUTOTUNE)
 
     if args.load_model:
-        model = tf.keras.models.load_model(args.load_model)
+        model = tf.keras.models.load_model(
+            args.load_model,
+            custom_objects={
+                'Conv2DLayer': vgg.Conv2DLayer,
+            },
+        )
     else:
         model = vgg.get_model(
             cfg=args.model,

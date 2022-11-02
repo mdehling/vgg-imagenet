@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 
-class Convolution2D(tf.keras.layers.Layer):
+class Conv2DLayer(tf.keras.layers.Layer):
 
     def __init__(
         self,
@@ -60,7 +60,7 @@ class Convolution2D(tf.keras.layers.Layer):
 
     @classmethod
     def from_config(cls, cfg):
-        return cls.__init__(**cfg)
+        return cls(**cfg)
 
 
 model_cfg = {
@@ -139,7 +139,7 @@ def get_model(
     x = input
     for n, block in enumerate(cfg):
         for i, layer_cfg in enumerate(block):
-            x = Convolution2D(
+            x = Conv2DLayer(
                 normalization=normalization,
                 name=f'block{n+1}_conv{i+1}',
                 **layer_cfg,
