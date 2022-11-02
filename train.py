@@ -85,7 +85,7 @@ if __name__ == '__main__':
     args = parse_args()
 
     (train, val), info = tfds.load(
-        'imagenet2012', split=['train', 'validation'],
+        args.dataset, split=['train', 'validation'],
         data_dir=args.data_dir,
         as_supervised=True,
         with_info=True,
